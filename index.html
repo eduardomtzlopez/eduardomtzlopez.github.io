@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eduardo Martínez | Desarrollador Web Full Stack</title>
+  <meta name="description" content="Portafolio de Eduardo Manuel Martínez López, estudiante de Ingeniería en Sistemas Computacionales en el Tec de Oaxaca y desarrollador web full stack.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f0d;
+      --bg-alt: #111714;
+      --card: #151c18;
+      --border: #24302a;
+      --text: #e8efe9;
+      --muted: #9aaba1;
+      --accent: #34d27b;
+      --accent-soft: rgba(52, 210, 123, 0.12);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+    body.light {
+      --bg: #f7faf8;
+      --bg-alt: #eef4f0;
+      --card: #ffffff;
+      --border: #d9e4dd;
+      --text: #14201a;
+      --muted: #5a6b61;
+      --accent: #17a35a;
+      --accent-soft: rgba(23, 163, 90, 0.1);
+      --shadow: 0 10px 30px rgba(20, 40, 30, 0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background .3s, color .3s;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    /* Navegación */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 800; font-size: 1.15rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); font-weight: 500; font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .icon-btn {
+      width: 38px; height: 38px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--card); color: var(--text);
+      cursor: pointer; display: grid; place-items: center; font-size: 1rem;
+    }
+    .menu-btn { display: none; }
+
+    /* Inicio */
+    .hero { padding: 110px 0 90px; }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-soft); color: var(--accent);
+      padding: 6px 14px; border-radius: 999px; font-size: .85rem; font-weight: 600;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    .hero h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); line-height: 1.1; font-weight: 800; margin: 20px 0 16px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 560px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn {
+      padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: .95rem;
+      border: 1px solid var(--border); transition: transform .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #06140c; border-color: var(--accent); }
+    .avatar-wrap { display: flex; justify-content: center; }
+    .avatar {
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 35%, var(--card)), var(--card));
+      border: 2px solid var(--accent);
+      display: grid; place-items: center;
+      font-size: 5.5rem; font-weight: 800; color: var(--accent);
+      box-shadow: 0 0 60px var(--accent-soft);
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Secciones */
+    section { padding: 90px 0; }
+    section.alt { background: var(--bg-alt); }
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+    .section-title span { color: var(--accent); }
+    .section-sub { color: var(--muted); margin-bottom: 44px; max-width: 640px; }
+
+    /* Sobre mí */
+    .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+    .about-grid p { color: var(--muted); margin-bottom: 16px; }
+    .about-grid strong { color: var(--text); }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+    }
+    .stat b { display: block; font-size: 1.8rem; color: var(--accent); font-weight: 800; }
+    .stat span { color: var(--muted); font-size: .9rem; }
+
+    /* Proyectos */
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .project {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px; display: flex; flex-direction: column;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .project:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow); }
+    .project-head { display: flex; justify-content: space-between; align-items: start; gap: 12px; margin-bottom: 12px; }
+    .project h3 { font-size: 1.35rem; }
+    .badge {
+      font-size: .75rem; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent); white-space: nowrap;
+    }
+    .project p { color: var(--muted); margin-bottom: 16px; flex-grow: 1; }
+    .project ul { color: var(--muted); font-size: .92rem; margin: 0 0 18px 18px; }
+    .project li { margin-bottom: 4px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .chip {
+      font-size: .8rem; padding: 4px 10px; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--text); background: var(--bg-alt);
+    }
+    .links { display: flex; gap: 18px; }
+    .links a { color: var(--accent); font-weight: 600; font-size: .92rem; }
+    .links a:hover { text-decoration: underline; }
+
+    /* Tecnologías */
+    .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .skill-group {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px;
+    }
+    .skill-group h3 { font-size: 1rem; margin-bottom: 14px; color: var(--accent); }
+    .skill-group ul { list-style: none; color: var(--muted); }
+    .skill-group li { padding: 5px 0; border-bottom: 1px dashed var(--border); font-size: .95rem; }
+    .skill-group li:last-child { border-bottom: none; }
+
+    /* Trayectoria */
+    .timeline { border-left: 2px solid var(--border); margin-left: 8px; }
+    .item { position: relative; padding: 0 0 34px 30px; }
+    .item::before {
+      content: ""; position: absolute; left: -9px; top: 4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--accent);
+    }
+    .item small { color: var(--accent); font-weight: 600; }
+    .item h3 { font-size: 1.1rem; margin: 2px 0 4px; }
+    .item p { color: var(--muted); }
+
+    /* Contacto */
+    .contact { text-align: center; }
+    .contact .section-sub { margin: 0 auto 30px; }
+    .contact .buttons { justify-content: center; }
+
+    footer { border-top: 1px solid var(--border); padding: 26px 0; text-align: center; color: var(--muted); font-size: .9rem; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .avatar-wrap { order: -1; }
+      .avatar { width: 180px; height: 180px; font-size: 3.6rem; }
+      .hero { padding: 60px 0; text-align: center; }
+      .hero p { margin: 0 auto; }
+      .buttons { justify-content: center; }
+      .projects { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: 1fr 1fr; }
+      .menu-btn { display: grid; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 14px 4%; }
+    }
+    @media (max-width: 520px) {
+      .skills, .stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="container">
+      <a href="#inicio" class="logo">Eduardo<span>.dev</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#tecnologias">Tecnologías</a></li>
+        <li><a href="#trayectoria">Trayectoria</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">☀️</button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Inicio -->
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="tag"><span class="dot"></span> Disponible para prácticas y empleo</span>
+          <h1>Hola, soy <span>Eduardo Martínez</span></h1>
+          <p>Desarrollador web <strong>full stack</strong> y estudiante de Ingeniería en Sistemas Computacionales en el Tec de Oaxaca. Construyo aplicaciones completas: desde la base de datos y la API hasta tenerlas funcionando en un servidor.</p>
+          <div class="buttons">
+            <a href="#proyectos" class="btn primary">Ver proyectos</a>
+            <a href="https://github.com/eduardomtzlopez" target="_blank" rel="noopener" class="btn">GitHub</a>
+            <a href="mailto:eduardomanuel270204@gmail.com" class="btn">Contáctame</a>
+          </div>
+        </div>
+        <div class="avatar-wrap">
+          <!-- Cuando tengas foto: sube "foto.jpg" al repo y cambia "EM" por: <img src="foto.jpg" alt="Eduardo Martínez"> -->
+          <div class="avatar">EM</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre mí -->
+    <section class="alt" id="sobre-mi">
+      <div class="container">
+        <h2 class="section-title">Sobre <span>mí</span></h2>
+        <p class="section-sub">Un poco de quién soy y cómo trabajo.</p>
+        <div class="about-grid">
+          <div>
+            <p>Estoy en <strong>noveno semestre</strong> de Ingeniería en Sistemas Computacionales en el Instituto Tecnológico de Oaxaca, con especialidad en <strong>Desarrollo Ágil de Software</strong>.</p>
+            <p>Me gusta llevar los proyectos de principio a fin: diseñar la base de datos, construir la API, crear la interfaz y <strong>desplegarla en la nube</strong> con su propio dominio y HTTPS. También me interesan las redes y la infraestructura.</p>
+            <p>He trabajado en equipo con metodologías ágiles como <strong>XP y Scrum</strong>, usando GitHub Projects para organizar tareas, y participé en un hackathon creando una herramienta con inteligencia artificial de código abierto.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>4</b><span>proyectos destacados</span></div>
+            <div class="stat"><b>2</b><span>apps desplegadas en la nube</span></div>
+            <div class="stat"><b>1</b><span>hackathon</span></div>
+            <div class="stat"><b>9°</b><span>semestre de ISC</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos">
+      <div class="container">
+        <h2 class="section-title">Proyectos <span>destacados</span></h2>
+        <p class="section-sub">Aplicaciones reales, con código público y, en varios casos, funcionando en línea.</p>
+        <div class="projects">
+
+          <article class="project">
+            <div class="project-head">
+              <h3>RescatApp</h3>
+              <span class="badge">En línea</span>
+            </div>
+            <p>Plataforma web para rescatar excedentes de alimentos en Oaxaca de Juárez. Conecta a negocios donantes con comedores y bancos de alimentos (ODS 2 y 12).</p>
+            <ul>
+              <li>Tres roles: donante, receptor y administrador</li>
+              <li>Reservas sin duplicados con transacciones y bloqueo de fila</li>
+              <li>23 pruebas automáticas y despliegue en AWS EC2 con HTTPS</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">React</span><span class="chip">Tailwind</span><span class="chip">Node.js</span>
+              <span class="chip">Express</span><span class="chip">PostgreSQL</span><span class="chip">AWS EC2</span><span class="chip">nginx</span>
+            </div>
+            <div class="links">
+              <a href="https://rescatapp.online" target="_blank" rel="noopener">Ver en línea ↗</a>
+              <a href="https://github.com/eduardomtzlopez/rescatapp" target="_blank" rel="noopener">Código ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-head">
+              <h3>PlanGo</h3>
+              <span class="badge">En línea</span>
+            </div>
+            <p>Sistema web para planear viajes: elegir destino, generar un itinerario día por día con inteligencia artificial y controlar el presupuesto de cada viaje.</p>
+            <ul>
+              <li>Itinerarios generados con Gemini AI</li>
+              <li>Pagos de prueba con Stripe y avisos por SMS o WhatsApp con Twilio</li>
+              <li>Desplegado en un VPS con nginx y Let's Encrypt</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">React</span>
+              <span class="chip">MySQL</span><span class="chip">Gemini AI</span><span class="chip">Stripe</span><span class="chip">Leaflet</span>
+            </div>
+            <div class="links">
+              <a href="https://plango.duckdns.org" target="_blank" rel="noopener">Ver en línea ↗</a>
+              <a href="https://github.com/eduardomtzlopez/plango" target="_blank" rel="noopener">Código ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-head">
+              <h3>AntesDePicar</h3>
+              <span class="badge">Hackathon</span>
+            </div>
+            <p>Detector de estafas digitales con IA local. Analiza mensajes de WhatsApp, SMS, correo u ofertas de trabajo, resalta las frases sospechosas y explica cómo verificar.</p>
+            <ul>
+              <li>IA de código abierto (Qwen 2.5) corriendo con Ollama, sin enviar datos a terceros</li>
+              <li>Mi parte: API del backend e integración</li>
+              <li>Hacktoberfest Hack Day Oaxaca x Oaxacoders 2026</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span>
+              <span class="chip">Ollama</span><span class="chip">Qwen 2.5</span><span class="chip">SQLite</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/eduardomtzlopez/AntesDePicar" target="_blank" rel="noopener">Código ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-head">
+              <h3>Utilería JS</h3>
+              <span class="badge">Librería</span>
+            </div>
+            <p>Librería ligera en JavaScript puro para validar y formatear datos de formularios en tiempo real, sin dependencias ni frameworks.</p>
+            <ul>
+              <li>Validación de correos, contraseñas seguras, edades y longitudes</li>
+              <li>Formateo automático de nombres y moneda (MXN)</li>
+              <li>Documentada con ejemplos de uso</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/eduardomtzlopez/utileria-js" target="_blank" rel="noopener">Código ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Tecnologías -->
+    <section class="alt" id="tecnologias">
+      <div class="container">
+        <h2 class="section-title"><span>Tecnologías</span> que uso</h2>
+        <p class="section-sub">Herramientas con las que he construido y desplegado mis proyectos.</p>
+        <div class="skills">
+          <div class="skill-group">
+            <h3>Frontend</h3>
+            <ul><li>React</li><li>JavaScript</li><li>HTML y CSS</li><li>Tailwind y Bootstrap</li><li>Vite</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Backend</h3>
+            <ul><li>Node.js y Express</li><li>PHP y Laravel</li><li>Python y FastAPI</li><li>Java</li><li>APIs REST y JWT</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Bases de datos</h3>
+            <ul><li>PostgreSQL</li><li>MySQL</li><li>SQLite</li><li>Modelado relacional</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Infraestructura</h3>
+            <ul><li>Linux (Ubuntu)</li><li>nginx y HTTPS</li><li>AWS EC2 y VPS</li><li>Docker</li><li>Git y GitHub</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trayectoria -->
+    <section id="trayectoria">
+      <div class="container">
+        <h2 class="section-title"><span>Trayectoria</span></h2>
+        <p class="section-sub">Formación y experiencia.</p>
+        <div class="timeline">
+          <div class="item">
+            <small>En curso</small>
+            <h3>Residencia profesional</h3>
+            <p>Instituto Tecnológico de Oaxaca.</p>
+          </div>
+          <div class="item">
+            <small>2026</small>
+            <h3>Hacktoberfest Hack Day Oaxaca x Oaxacoders</h3>
+            <p>Desarrollo de AntesDePicar en la categoría de Mejor Proyecto de IA de Código Abierto.</p>
+          </div>
+          <div class="item">
+            <small>2026</small>
+            <h3>Proyecto integrador: RescatApp</h3>
+            <p>Gestión de Proyectos de Software, con Programación Extrema (XP) en 5 iteraciones y despliegue en AWS.</p>
+          </div>
+          <div class="item">
+            <small>En curso · 9° semestre</small>
+            <h3>Ingeniería en Sistemas Computacionales</h3>
+            <p>Instituto Tecnológico de Oaxaca. Especialidad en Desarrollo Ágil de Software.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="alt contact" id="contacto">
+      <div class="container">
+        <h2 class="section-title">¿Hablamos<span>?</span></h2>
+        <p class="section-sub">Estoy buscando oportunidades de prácticas y empleo en desarrollo web. Escríbeme y te respondo pronto.</p>
+        <p class="mono" style="color: var(--accent); margin-bottom: 26px;">eduardomanuel270204@gmail.com</p>
+        <div class="buttons">
+          <a href="mailto:eduardomanuel270204@gmail.com" class="btn primary">Enviar correo</a>
+          <a href="https://github.com/eduardomtzlopez" target="_blank" rel="noopener" class="btn">GitHub</a>
+          <!-- Cuando tengas LinkedIn, quita los signos de comentario de esta línea y pon tu enlace:
+          <a href="https://www.linkedin.com/in/TU-USUARIO" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+          -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Eduardo Manuel Martínez López · Oaxaca, México</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Tema claro / oscuro (se recuerda en el navegador)
+    const themeBtn = document.getElementById("themeBtn");
+    function applyTheme(light) {
+      document.body.classList.toggle("light", light);
+      themeBtn.textContent = light ? "🌙" : "☀️";
+    }
+    try { applyTheme(localStorage.getItem("tema") === "claro"); } catch (e) {}
+    themeBtn.addEventListener("click", () => {
+      const light = !document.body.classList.contains("light");
+      applyTheme(light);
+      try { localStorage.setItem("tema", light ? "claro" : "oscuro"); } catch (e) {}
+    });
+
+    // Menú en celular
+    const navLinks = document.getElementById("navLinks");
+    document.getElementById("menuBtn").addEventListener("click", () => navLinks.classList.toggle("open"));
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+  </script>
+</body>
+</html>
